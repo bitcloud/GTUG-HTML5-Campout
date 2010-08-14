@@ -51,8 +51,8 @@ app.post('/own/:user', function(req, res) {
 		'heading':1, 
 		'speed':1
 	}
-	
-	// identifer of teh variable to check actually, just a shortcut
+
+	// identifer of the variable to check actually, just a shortcut
 	var checkMe = '';
 	
 	sys.log('rows to check ' + data.length);
@@ -158,7 +158,7 @@ app.get('/own/:user', function(req, res){
 	
 	client.request({
 	  path: '/geogame/_design/geogame/_view/user',
-	  query: {reduce: false, key: ["sebs"]},
+	  query: {reduce: false, key: [req.params.user]},
 	  full: false
 	}, CouchCb);
 
