@@ -12,8 +12,12 @@
  * parameter to: long value
  */
 function readCoordinates(var from, var to) {
-	var coordinateListJson = localStorage.getItem("coordinateStorage"); 
-	return JSON.parse (coordinateListJson);
+	var coordinateListJson = localStorage.getItem("coordinateStorage");
+	var coordinateList = JSON.parse (coordinateListJson);
+	var newList = coordinateList.filter(function(index) {
+		  return index.id >= from && index.id <= to;
+	})
+	return newList;
 }
 
 /**
