@@ -1,6 +1,7 @@
 /** 
  * contains methods for reading and writing gps coordinates from and to the local storage. 
- * A coordinate contains a timestamp, the latitude and the longitude 
+ * A coordinate contains a timestamp, latitude, longitude, heading and speed.
+ *  
  * 
  * 
  * **/
@@ -22,12 +23,18 @@ function readCoordinates(fromTime, toTime) {
 
 /**
  * Returns a single coordinate, the one next after given timestamp as JSON Object
- * parameter time: long value
+ * coordinate.id = timestamp;
+ *	coordinate.lat 
+ *	coordinate.lon 
+ *	coordinate.heading 
+ *	coordinate.speed 
+	
+	parameter time: long value.
  */
 function readLatestCoordinate(){
 	var coordinateListJson = localStorage.getItem("coordinateStorage");
 	var coordinateList = JSON.parse (coordinateListJson);
-	if(coordinateList == null) return { lat: 0, long: 0};
+	if(coordinateList == null) return { lat: 0, lon: 0};
 	return coordinateList[coordinateList.length - 1];
 }
 
@@ -35,11 +42,21 @@ function readLatestCoordinate(){
  * Writes a coordinate to the locale storage
  */
 function writeCoordinate (latitude, longitude){
+	writeCoordinate (latitude, longitude, 0, 0);
+}
+
+
+/**
+ * Writes a coordinate to the locale storage
+ */
+function writeCoordinate (latitude, longitude, heading, speed){
 	var coordinate = new Object ();
 	var timestamp = new Date().getTime();
 	coordinate.id = timestamp;
 	coordinate.lat = latitude;
 	coordinate.lon = longitude;
+	coordinate.heading = heading;
+	coordinate.speed = speed;
 	
 	var coordinateListJson = localStorage.getItem("coordinateStorage"); 
 	var coordinateList = [];
