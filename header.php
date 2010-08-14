@@ -5,8 +5,11 @@
 <!DOCTYPE html> 
 <html lang="en"> 
 <head> 
-	<meta charset="utf-8" /> 
-	<title>ReLoCoring</title> 	
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" href="favicon-touch.png"/> 	
+	<link rel="favicon" href="favicon.ico"/> 	
+	<title>ReLoCoring</title>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"  /> 	
 	<meta content="yes" name="apple-mobile-web-app-capable" />
 	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
 	<link href="iwebkit/css/style.css" rel="stylesheet" media="screen" type="text/css" />
