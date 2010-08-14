@@ -25,7 +25,8 @@ var marker = null;
  * parameter time: long value
  */
 function initialize() {
-	document.getElementById( 'gmap' ).style.height = window.innerHeight + 'px';
+	// -32 for topbar
+	document.getElementById( 'gmap' ).style.height = (window.innerHeight-32) + 'px';
 	if (GBrowserIsCompatible()) {
 	    map = new GMap2(document.getElementById("gmap"));
 	    map.setCenter(new GLatLng( DEFAULT_LAT, DEFAULT_LNG ), DEFAULT_ZOOM );

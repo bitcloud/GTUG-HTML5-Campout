@@ -23,6 +23,19 @@
 		#functions button { height: 32px; }
 		.bg { position: absolute; left: 0; top: 0; width: 100%; height: 64px; background-color: black; filter: alpha(opacity=50);-moz-opacity: 0.5; opacity: 0.5; border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px; }
 		.fg { position: absolute; left: 16px; top: 16px;  }
+		
+		#playerMe { position: absolute; left: 0; bottom: 0; }
+		#playerEnemy { position: absolute; right: 0; bottom: 0;}
+		.player { width: 96px; height: 128px; }
+		
+		.playerBg  { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: black; filter: alpha(opacity=50);-moz-opacity: 0.5; opacity: 0.5; }
+		  .bgMe    { border-top-right-radius: 16px; -moz-border-top-right-radius: 16px; -webkit-border-top-right-radius: 16px;}
+		  .bgEnemy { border-top-left-radius: 16px;  -moz-border-top-left-radius: 16px;  -webkit-border-top-left-radius: 16px;}
+
+		.playerFg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+		.playerFg img { margin-left: 8px; margin-top: 8px; border: 1px solid white; padding: 2px; }
+		.playerFg div, .playerFg span { margin-left: 8px; margin-top: 8px;  }
+		
 	</style>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script src="js/storage.js"></script>
