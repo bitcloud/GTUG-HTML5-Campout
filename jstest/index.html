@@ -2,27 +2,34 @@
                     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="../js/jquery/jquery-1.4.2.min.js"/>
-<link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen" />
-<script type="text/javascript" src="qunit/qunit.js"/>
+<script src="../js/jquery/jquery-1.4.2.min.js"></script>
+<link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen" ></link>
+<script type="text/javascript" src="qunit/qunit.js"/></script>
 
-<script src="../js/storage.js"/>
+<script src="../js/storage.js"></script>
 
 <script>
-$(document).ready(function(){
-    
-test("write to local storage", function() {
-	localStorage.clear();
-	equals( 0, localStorage.length );
-	writeCoordinate (3, 5);
-	equals( 1, localStorage.length );
-});
-
-
+$(document).ready(function(){ 
+	test("write to local storage", function() {
+		localStorage.clear();
+		equals( 0, localStorage.length, "check empty storage" );
+		writeCoordinate (3, 5);
+		equals( 1, localStorage.length, "element written to storage" );
+		var key = localStorage.key(0);
+		var coordinateListJson = localStorage.getItem(key);
+		ok(coordinateListJson != null, "read coordinate from storage");
+		var coordinateList = JSON.parse(coordinateListJson);
+		ok(coordinateList != null, "parse coordinate");
+		var coordinate = coordinateList[0];
+		ok(coordinate.id > 0, "check id");
+		equals(coordinate.lat, 3, "check latitude" );
+		equals(coordinate.lon, 5, "check longitude" );
+	});
 });
 </script>
   
 </head>
+
 <body>
 	<h1 id="qunit-header">QUnit example</h1>
 	<h2 id="qunit-banner"></h2>

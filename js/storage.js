@@ -66,6 +66,5 @@ function writeCoordinate (latitude, longitude, heading, speed){
 	coordinateList.push (coordinate);
 	
 	var coordinateJson = JSON.stringify(coordinateList);
-	console.log(coordinateJson);
 	localStorage.setItem("coordinateStorage", coordinateJson); 
 }
