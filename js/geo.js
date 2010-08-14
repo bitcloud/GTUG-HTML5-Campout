@@ -17,7 +17,8 @@ function storeCurrentLocation( {
 	   var curLat = position.coords.latitude;
 	   var curLong = position.coords.longitude;
 	   if (distanceFromLastLocation(curLat,curLong > thresholdInMeters) ) {
-	      writeCoordinate(lat,long);		
+	      writeCoordinate(lat,long);	
+		
 	   }
 
 	}, function(error) {
@@ -28,9 +29,9 @@ function storeCurrentLocation( {
 
 //gets diff in meters between current location, passe as param, and last known location in localstorage
 function distanceFromLastLocation(curLat, curLong) {
-	//TODO: implement: get last from storage, calculateDistance()
-	//TODO: what if we have several small changes of loc < threshold, that together make up a store-worthy change > threshold?
-	return 100;
+	var lastCoord = readLatestCoordinate();
+	var distanceFromLast = calculateDistance(lastCoord.lat, lastCoord.long, curLat, curLong);
+	return distanceFromLast;
 }
 
 //monkey patching for calculateDistance function
