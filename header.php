@@ -6,7 +6,11 @@
 <html lang="en"> 
 <head> 
 	<meta charset="utf-8" /> 
-	<title>ReLoCoring</title> 
+	<title>ReLoCoring</title> 	
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+	<link href="iwebkit/css/style.css" rel="stylesheet" media="screen" type="text/css" />
+	<script src="iwebkit/javascript/functions.js" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<?=$_SERVER['HTTP_HOST']=='webdev.io-labs.de'?$options['mapkey']['LIVE']:$options['mapkey']['DEMO'] ?>" type="text/javascript"></script>	
 	<style>
 		* { font-family: sans-serif; font-size: 14px; }
