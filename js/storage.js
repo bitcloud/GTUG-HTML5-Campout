@@ -34,7 +34,7 @@ function readCoordinates(fromTime, toTime) {
 function readLatestCoordinate(){
 	var coordinateListJson = localStorage.getItem("coordinateStorage");
 	var coordinateList = JSON.parse (coordinateListJson);
-	if(coordinateList == null) return { lat: 0, lon: 0};
+	if(coordinateList == null) return { latitude: 0, longitude: 0};
 	return coordinateList[coordinateList.length - 1];
 }
 
@@ -53,8 +53,8 @@ function writeCoordinate (latitude, longitude, heading, speed){
 	var coordinate = new Object ();
 	var timestamp = new Date().getTime();
 	coordinate.id = timestamp;
-	coordinate.lat = latitude;
-	coordinate.lon = longitude;
+	coordinate.latitude = latitude;
+	coordinate.longitude = longitude;
 	coordinate.heading = heading;
 	coordinate.speed = speed;
 	

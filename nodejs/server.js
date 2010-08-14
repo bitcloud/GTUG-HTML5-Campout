@@ -3,10 +3,13 @@ var sys = require('sys');
 
 // express is based on connect 
 var connect = require('connect');
+
 // init express app 
 var app = require('express').createServer();
+
 // init couchdb
 var couchdb = require('./couchdb/lib/couchdb');
+
 // create a client to couchdb
 client = couchdb.createClient(5984, 'localhost'), db = client.db('geogame');
 
@@ -67,7 +70,6 @@ app.get('/all/', function(req, res){
 
 });
 
-
 /*
  * request location data based on one user
  */
@@ -98,6 +100,4 @@ app.get('/own/:user', function(req, res){
 	}, CouchCb);
 
 });
-
 app.listen(3000);
-

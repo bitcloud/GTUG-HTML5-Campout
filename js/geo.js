@@ -26,9 +26,9 @@ function storeCurrentLocation(){
 }
 
 //gets diff in meters between current location, passe as param, and last known location in localstorage
-function distanceFromLastLocation(curLat, curLong) {
+function distanceFromLastLocation(curLatitude, curLongitude) {
 	var lastCoord = readLatestCoordinate();
-	var distanceFromLast = calculateDistance(lastCoord.lat, lastCoord.long, curLat, curLong);
+	var distanceFromLast = calculateDistance(lastCoord.latitude, lastCoord.longitude, curLatitude, curLongitude);
 	
 	return distanceFromLast;
 }
@@ -50,4 +50,3 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   var d = R * c;
   return d*1000; //modified to return m rathern than km
 }
-
