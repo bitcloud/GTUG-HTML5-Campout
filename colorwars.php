@@ -1,10 +1,9 @@
 <?php require 'header.php'; ?>
 	<body onload="initialize()";>
 	
-	
-		<div id="player"></div> 		
-		
-		
+		<div id="topbar" style="margin-bottom: 0px;"> 
+			<div id="title"><div id="player"></div></div> 
+		</div> 		
 		
 		<div id="gmap"></div>
 		<div id="functions">
