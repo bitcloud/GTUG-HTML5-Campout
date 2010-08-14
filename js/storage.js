@@ -33,7 +33,7 @@ function readCoordinates(fromTime, toTime) {
  */
 function readLatestCoordinate(){
 	var coordinateListJson = localStorage.getItem("coordinateStorage");
-	var coordinateList = JSON.parse (coordinateListJson);
+	var coordinateList = JSON.parse (coordinateListJson);	
 	if(coordinateList == null) return { latitude: 0, longitude: 0};
 	return coordinateList[coordinateList.length - 1];
 }
@@ -42,14 +42,18 @@ function readLatestCoordinate(){
  * Writes a coordinate to the locale storage
  */
 function writeCoordinate (latitude, longitude, heading, speed){
+	
 	if (heading == null){
 		heading = 0;
 	}
+	
 	if (speed == null){
 		speed = 0;
 	}
+	
 	var coordinate = new Object ();
 	var timestamp = new Date().getTime();
+	
 	coordinate.id = timestamp;
 	coordinate.latitude = latitude;
 	coordinate.longitude = longitude;
@@ -65,5 +69,5 @@ function writeCoordinate (latitude, longitude, heading, speed){
 	var coordinateJson = JSON.stringify(coordinateList);
 	localStorage.setItem("coordinateStorage", coordinateJson);
 	
-	 jQuery.post('./set.php', { data:coordinateList} );
+	jQuery.get('./set.php',  coordinateList );
 }

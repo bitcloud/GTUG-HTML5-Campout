@@ -4,7 +4,7 @@
 
 //periodically stores current location, to be called on document.ready
 function periodicallyUpdateLocation(){
-	var interval = 1000 * 20; //one minute
+	var interval = 1000 * 5; //one minute
 	setInterval(storeCurrentLocation,interval);
 }
 

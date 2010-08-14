@@ -7,6 +7,7 @@
 		<script>
 		jQuery(document).ready(function(){
 			jQuery('#player').html(gup('playername'));
+			localStorage.clear();
 			initialize();
 			showMe();
 			periodicallyUpdateLocation();
