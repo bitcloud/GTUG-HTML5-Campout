@@ -16,7 +16,7 @@ function storeCurrentLocation(){
 	   var curLat = position.coords.latitude;
 	   var curLong = position.coords.longitude;
 	   if (distanceFromLastLocation(curLat,curLong) > thresholdInMeters ) {
-	      writeCoordinate(lat,long);	
+	      writeCoordinate(curLat,curLong);	
 	   }
 	}, 
   function(error) {
