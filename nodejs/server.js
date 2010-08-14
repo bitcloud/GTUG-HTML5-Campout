@@ -30,6 +30,7 @@ app.post('/own/:user', function(req, res) {
 	if (typeof data != 'object') {
 		throw new Error('keyboard cat is not a object!');
 	}
+	// data must be array of {"time":"12.12.2010 09:00:00","lat":12.121231,"long":32.321131,"heading":33,"speed":2,"user":"sebs"}
 
 	// iterate over data and check for all fields 
 	res.send(JSON.stringify('stored '+ req.params.user));
