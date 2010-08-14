@@ -24,9 +24,10 @@ function readCoordinates(fromTime, toTime) {
  * Returns a single coordinate, the one next after given timestamp as JSON Object
  * parameter time: long value
  */
-function readLatestCoordinate (){
+function readLatestCoordinate(){
 	var coordinateListJson = localStorage.getItem("coordinateStorage");
 	var coordinateList = JSON.parse (coordinateListJson);
+	if(coordinateList == null) return { lat: 0, long: 0};
 	return coordinateList[coordinateList.length - 1];
 }
 
@@ -41,11 +42,13 @@ function writeCoordinate (latitude, longitude){
 	coordinate.lon = longitude;
 	
 	var coordinateListJson = localStorage.getItem("coordinateStorage"); 
-	var coordinateList = new Array ();
+	var coordinateList = [];
 	if (coordinateListJson != null){
 		coordinateList = JSON.parse (coordinateListJson);
 	}
 	coordinateList.push (coordinate);
+	
 	var coordinateJson = JSON.stringify(coordinateList);
+	console.log(coordinateJson);
 	localStorage.setItem("coordinateStorage", coordinateJson); 
 }

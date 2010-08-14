@@ -4,7 +4,7 @@
 
 //periodically stores current location, to be called on document.ready
 function periodicallyUpdateLocation(){
-	var interval = 1000 * 60; //one minute
+	var interval = 1000 * 10; //one minute
 	setInterval(storeCurrentLocation,interval);
 }
 
@@ -13,10 +13,12 @@ function periodicallyUpdateLocation(){
 function storeCurrentLocation(){
 	var thresholdInMeters = 30;
 	navigator.geolocation.getCurrentPosition(function(position) {
-	   var curLat = position.coords.latitude;
-	   var curLong = position.coords.longitude;
-	   if (distanceFromLastLocation(curLat,curLong) > thresholdInMeters ) {
-	      writeCoordinate(curLat,curLong);	
+	   var distance = distanceFromLastLocation(position.coords.latitude,position.coords.longitude);
+	   showMe();
+	   updateMe(position.coords.latitude,position.coords.longitude);
+	   if (distance > thresholdInMeters ) {
+		   
+	   	   writeCoordinate(curLat,curLong);	
 	   }
 	}, 
   function(error) {
@@ -29,6 +31,7 @@ function storeCurrentLocation(){
 function distanceFromLastLocation(curLat, curLong) {
 	var lastCoord = readLatestCoordinate();
 	var distanceFromLast = calculateDistance(lastCoord.lat, lastCoord.long, curLat, curLong);
+	
 	return distanceFromLast;
 }
 

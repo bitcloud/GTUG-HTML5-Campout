@@ -14,8 +14,8 @@
 		</div>		
 		<script>
 		jQuery(document).ready(function(){
-	
 			jQuery('#player').html(gup('playername'));
+			periodicallyUpdateLocation();
 		});
 		</script>
 	</body>  
