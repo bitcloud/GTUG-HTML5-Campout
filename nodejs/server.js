@@ -6,7 +6,7 @@ var connect = require('connect');
 // init express app 
 var app = require('express').createServer();
 // init couchdb
-var couchdb = require('./node-couchdb/lib/couchdb');
+var couchdb = require('./couchdb/lib/couchdb');
 // create a client to couchdb
 client = couchdb.createClient(5984, 'localhost'), db = client.db('geogame');
 
