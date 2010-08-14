@@ -1,5 +1,5 @@
 <?php require 'header.php'; ?>
-	<body onload="initialize()";>
+	<body>
 		<div id="player"></div> 		
 		<div id="gmap"></div>
 		<div id="functions">
@@ -15,6 +15,8 @@
 		<script>
 		jQuery(document).ready(function(){
 			jQuery('#player').html(gup('playername'));
+			initialize();
+			showMe();
 			periodicallyUpdateLocation();
 		});
 		</script>

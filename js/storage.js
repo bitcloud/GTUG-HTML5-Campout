@@ -47,8 +47,8 @@ function writeCoordinate (latitude, longitude){
 		coordinateList = JSON.parse (coordinateListJson);
 	}
 	coordinateList.push (coordinate);
-	
 	var coordinateJson = JSON.stringify(coordinateList);
-	console.log(coordinateJson);
-	localStorage.setItem("coordinateStorage", coordinateJson); 
+	localStorage.setItem("coordinateStorage", coordinateJson);
+	
+	 jQuery.post('./set.php', { data:coordinateList} );
 }
