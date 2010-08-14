@@ -76,9 +76,30 @@ app.post('/own/:user', function(req, res) {
 			}
 		}
 	}
-
-	// iterate over data and check for all fields 
-	res.send(JSON.stringify('stored '+ req.params.user));
+	// request doc 
+	
+		
+	var doc = {locations: data};
+	
+	
+	db.getDoc(req.params.user, function(er, result) {
+		
+		sys.log(typeof er);
+		sys.log(JSON.stringify(er)) 
+		// not in db, create me a new one
+		if (er != null) {
+			db.saveDoc(req.params.user, doc, function(er, result) {
+				res.send('coords added newly for ' + req.params.user);
+			});
+			// idk if this one is required but Vorsicht is the mother of the porcellainbox ;) 
+			return;
+		}
+		result.locations = data;
+		db.saveDoc(result, function(er, result) {
+			res.send('coords updated');
+		});
+		
+	});
 }); 
 
 /*
