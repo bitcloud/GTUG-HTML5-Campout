@@ -1,6 +1,11 @@
 <?php require 'header.php'; ?>
 	<body onload="initialize()";>
+	
+	
 		<div id="player"></div> 		
+		
+		
+		
 		<div id="gmap"></div>
 		<div id="functions">
 			<div class="bg"></div>
