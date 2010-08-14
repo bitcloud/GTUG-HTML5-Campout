@@ -12,7 +12,8 @@
  * parameter to: long value
  */
 function readCoordinates(var from, var to) {
-	
+	var coordinateListJson = localStorage.getItem("coordinateStorage"); 
+	return JSON.parse (coordinateListJson);
 }
 
 /**
@@ -27,11 +28,18 @@ function readNextCoordinate (var time){
  * Writes a coordinate to the locale storage
  */
 function writeCoordinate (var latitude, var longitude){
-	var timestamp = new Date().getTime();
 	var coordinate = new Object ();
+	var timestamp = new Date().getTime();
 	coordinate.id = timestamp;
 	coordinate.lat = latitude;
 	coordinate.lon = longitude;
-	var coordinateJson = JSON.stringify(coordinate);
-	localStorage.setItem(timestamp, coordinateJson); 
+	
+	var coordinateListJson = localStorage.getItem("coordinateStorage"); 
+	if (coordinateListJson == null){
+		coordinateListJson = "";
+	}
+	var coordinateList = JSON.parse (coordinateListJson);
+	coordinateList.push (coordinate);
+	var coordinateJson = JSON.stringify(coordinateList);
+	localStorage.setItem("coordinateStorage", coordinateJson); 
 }
