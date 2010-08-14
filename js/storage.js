@@ -41,10 +41,10 @@ function writeCoordinate (latitude, longitude){
 	coordinate.lon = longitude;
 	
 	var coordinateListJson = localStorage.getItem("coordinateStorage"); 
-	if (coordinateListJson == null){
-		coordinateListJson = "";
+	var coordinateList = new Array ();
+	if (coordinateListJson != null){
+		coordinateList = JSON.parse (coordinateListJson);
 	}
-	var coordinateList = JSON.parse (coordinateListJson);
 	coordinateList.push (coordinate);
 	var coordinateJson = JSON.stringify(coordinateList);
 	localStorage.setItem("coordinateStorage", coordinateJson); 
