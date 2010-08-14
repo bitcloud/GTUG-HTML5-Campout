@@ -25,12 +25,54 @@ app.post('/own/:user', function(req, res) {
 	}
 	var data = req.param('data');
 	// check if data is json 
-	
-	var data = eval('(' + data + ')');
+	// var data = eval('(' + data + ')');
+	var data = JSON.parse(data);
+	// so since when is an Array a typeof object? sebs does not approve of this 
+	// nodejs thinks otherwise and took 30 minutes of my life i could have spent with 
+	// coke, blackjack and poledancers 
 	if (typeof data != 'object') {
 		throw new Error('keyboard cat is not a object!');
 	}
-	// data must be array of {"time":"12.12.2010 09:00:00","lat":12.121231,"long":32.321131,"heading":33,"speed":2,"user":"sebs"}
+	
+	// data must be array of {"id":"12.12.2010 09:00:00","lat":12.121231,"long":32.321131,"heading":33,"speed":2}
+	if (data.length == 0) {
+		throw new Error('keyboard cats length is null');
+	}
+	
+	var row = null;
+	// check if all values are there
+	var toCheck = {
+		'id':1,
+		'lat':1, 
+		'long':1, 
+		'heading':1, 
+		'speed':1
+	}
+	
+	// identifer of teh variable to check actually, just a shortcut
+	var checkMe = '';
+	
+	sys.log('rows to check ' + data.length);
+	
+	// iterate over all the data passed 
+	for (i in data) {
+		// shortcut for row
+		row = data[i];
+		sys.log(JSON.stringify(row));
+		// iterate over the checker
+		for (j in toCheck) {
+			// the key to check
+			checkMe = j;
+			
+			sys.log('key ' + j);
+			sys.log('row number' + i);
+			sys.log('key exists? ' + typeof row[j]);
+			
+			if (typeof row[j] == 'undefined') {
+				throw new Error('keyboardcat misses a value ' + j + 'in row ' + i + JSON.stringify(row));
+			}
+		}
+	}
 
 	// iterate over data and check for all fields 
 	res.send(JSON.stringify('stored '+ req.params.user));
