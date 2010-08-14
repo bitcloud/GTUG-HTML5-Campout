@@ -25,11 +25,12 @@ var marker = null;
  * parameter time: long value
  */
 function initialize() {
-	document.getElementById( 'gmap' ).style.height = window.innerHeight + 'px';
+	// -32 for topbar
+	document.getElementById( 'gmap' ).style.height = (window.innerHeight-32) + 'px';
 	if (GBrowserIsCompatible()) {
 	    map = new GMap2(document.getElementById("gmap"));
 	    map.setCenter(new GLatLng( DEFAULT_LAT, DEFAULT_LNG ), DEFAULT_ZOOM );
-	    map.addControl(new GSmallMapControl());
+	    //map.addControl(new GSmallMapControl());
 	    geocoder = new GClientGeocoder();
 	    
 		/*
@@ -42,10 +43,10 @@ function initialize() {
 		*/
 		
 		// @TODO mockup values
-	    lat = DEFAULT_LAT;
-	    lng = DEFAULT_LNG;
+	    latitude = DEFAULT_LAT;
+	    longitude = DEFAULT_LNG;
 	  
-	    point = new GLatLng( lat, lng );    	
+	    point = new GLatLng( latitude, longitude );    	
 	    map.setCenter( point, DEFAULT_ZOOM );
 	}
 }
@@ -57,10 +58,10 @@ function initialize() {
 function showMe()
 {
 	// @TODO mockup values
-    lat = DEFAULT_LAT;
-    lng = DEFAULT_LNG;
+    latitude = DEFAULT_LAT;
+    longitude = DEFAULT_LNG;
 
-	point = new GLatLng( lat, lng );
+	point = new GLatLng( latitude, longitude );
 	map.panTo( point, DEFAULT_ZOOM );
     marker = new GMarker( point );
     map.addOverlay( marker );	
@@ -72,9 +73,9 @@ function showMe()
  * parameter lat: float latitude for new position
  * parameter lng: float longitude für new position
  */
-function updateMe( lat, lng )
+function updateMe( latitude, longitude )
 {	
-	point = new GLatLng( lat, lng );
+	point = new GLatLng( latitude, longitude );
 	map.panTo( point, DEFAULT_ZOOM );	
 	
 	map.removeOverlay( marker );
