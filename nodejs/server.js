@@ -51,8 +51,8 @@ app.post('/own/:user', function(req, res) {
 		'heading':1, 
 		'speed':1
 	}
-	
-	// identifer of teh variable to check actually, just a shortcut
+
+	// identifer of the variable to check actually, just a shortcut
 	var checkMe = '';
 	
 	sys.log('rows to check ' + data.length);
@@ -76,9 +76,30 @@ app.post('/own/:user', function(req, res) {
 			}
 		}
 	}
-
-	// iterate over data and check for all fields 
-	res.send(JSON.stringify('stored '+ req.params.user));
+	// request doc 
+	
+		
+	var doc = {locations: data};
+	
+	
+	db.getDoc(req.params.user, function(er, result) {
+		
+		sys.log(typeof er);
+		sys.log(JSON.stringify(er)) 
+		// not in db, create me a new one
+		if (er != null) {
+			db.saveDoc(req.params.user, doc, function(er, result) {
+				res.send('coords added newly for ' + req.params.user);
+			});
+			// idk if this one is required but Vorsicht is the mother of the porcellainbox ;) 
+			return;
+		}
+		result.locations = data;
+		db.saveDoc(result, function(er, result) {
+			res.send('coords updated');
+		});
+		
+	});
 }); 
 
 /*
@@ -137,7 +158,7 @@ app.get('/own/:user', function(req, res){
 	
 	client.request({
 	  path: '/geogame/_design/geogame/_view/user',
-	  query: {reduce: false, key: ["sebs"]},
+	  query: {reduce: false, key: [req.params.user]},
 	  full: false
 	}, CouchCb);
 
