@@ -1,10 +1,13 @@
+<?php
+	$options['mapkey']['LIVE'] = 'ABQIAAAATpYyrRyzbARSAxuyTXETnBTO8FkhgOKBakegqmsTuK7gvuXozBQ1FBChyf7qb0pGtC8o9ydU54kyPA';
+	$options['mapkey']['DEMO'] = 'ABQIAAAAZ1Z80H-gcuUBkSB3-l_CBRSlohPg15YjL7bcZvAGKyxlzbpwaBQJpIiy3yBxyfbERv7JHpIOW1YUDA'; 
+?>
 <!DOCTYPE html> 
 <html lang="en"> 
- 
 <head> 
 	<meta charset="utf-8" /> 
-	<title>GTUGMUC campout app *Name to be determined by poll*</title> 
-	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAZ1Z80H-gcuUBkSB3-l_CBRSlohPg15YjL7bcZvAGKyxlzbpwaBQJpIiy3yBxyfbERv7JHpIOW1YUDA" type="text/javascript"></script>	
+	<title>ReLoCoring</title> 
+	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<?=$_SERVER['HTTP_HOST']=='webdev.io-labs.de'?$options['mapkey']['LIVE']:$options['mapkey']['DEMO'] ?>" type="text/javascript"></script>	
 	<style>
 		* { font-family: sans-serif; font-size: 14px; }
 		a { color: red; }		
@@ -17,23 +20,21 @@
 		.bg { position: absolute; left: 0; top: 0; width: 100%; height: 64px; background-color: black; filter: alpha(opacity=50);-moz-opacity: 0.5; opacity: 0.5; border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px; }
 		.fg { position: absolute; left: 16px; top: 16px;  }
 	</style>
-
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/geo.js"></script>
   <script src="js/gmap.js"></script>
-  
+<script>
+function gup( name )
+{
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return results[1];
+}
+</script>  
 </head> 
-	<body onload="initialize()";> 		
-		<div id="gmap"></div>
-		<div id="functions">
-			<div class="bg"></div>
-			<div class="fg">
-				<button type="button" onclick="showMe();">showMe()</button>
-				<button type="button" onclick="updateMe( DEFAULT_LAT+0.01, DEFAULT_LNG+0.005 );">updateMe()</button>
-				<button type="button" onclick="demoLine();">demoLine()</button>
-				<button type="button" onclick="demoPolygon();">demoPolygon()</button>
-				
-			</div>
-		</div>		
-	</body>  
-</html> 
