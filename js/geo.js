@@ -15,7 +15,7 @@ function storeCurrentLocation(){
 	navigator.geolocation.getCurrentPosition(function(position) {
 	   var curLat = position.coords.latitude;
 	   var curLong = position.coords.longitude;
-	   if (distanceFromLastLocation(curLat,curLong > thresholdInMeters) ) {
+	   if (distanceFromLastLocation(curLat,curLong) > thresholdInMeters ) {
 	      writeCoordinate(lat,long);	
 	   }
 	}, 
