@@ -19,7 +19,7 @@
 		header { font-size: 16px; font-weight: bold; color: darkgray; border-bottom: 1px dotted darkgray; }
 		
 		#gmap { width: 100%; height: 500px; }
-		#functions { position: absolute; width: 50%; height: 64px; top: 16px; left: 25%; }
+		#functions { position: absolute; width: 50%; height: 64px; bottom: 48px; left: 25%; }
 		#functions button { height: 32px; }
 		.bg { position: absolute; left: 0; top: 0; width: 100%; height: 64px; background-color: black; filter: alpha(opacity=50);-moz-opacity: 0.5; opacity: 0.5; border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px; }
 		.fg { position: absolute; left: 16px; top: 16px;  }

@@ -29,7 +29,7 @@ function initialize() {
 	if (GBrowserIsCompatible()) {
 	    map = new GMap2(document.getElementById("gmap"));
 	    map.setCenter(new GLatLng( DEFAULT_LAT, DEFAULT_LNG ), DEFAULT_ZOOM );
-	    map.addControl(new GSmallMapControl());
+	    //map.addControl(new GSmallMapControl());
 	    geocoder = new GClientGeocoder();
 	    
 		/*
