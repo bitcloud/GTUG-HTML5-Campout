@@ -11,12 +11,12 @@
  * parameter from: long value
  * parameter to: long value
  */
-function readCoordinates(from, to) {
+function readCoordinates(fromTime, toTime) {
 	var coordinateListJson = localStorage.getItem("coordinateStorage");
 	var coordinateList = JSON.parse (coordinateListJson);
 	var newList = coordinateList.filter(function(index) {
-		  return index.id >= from && index.id <= to;
-	})
+		  return index.id >= fromTime && index.id <= toTime;
+	});
 	return newList;
 }
 
@@ -24,8 +24,10 @@ function readCoordinates(from, to) {
  * Returns a single coordinate, the one next after given timestamp as JSON Object
  * parameter time: long value
  */
-function readNextCoordinate (time){
-	
+function readLatestCoordinate (){
+	var coordinateListJson = localStorage.getItem("coordinateStorage");
+	var coordinateList = JSON.parse (coordinateListJson);
+	return coordinateList[coordinateList.length - 1];
 }
 
 /**
