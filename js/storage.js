@@ -11,7 +11,7 @@
  * parameter from: long value
  * parameter to: long value
  */
-function readCoordinates(var from, var to) {
+function readCoordinates(from, to) {
 	var coordinateListJson = localStorage.getItem("coordinateStorage");
 	var coordinateList = JSON.parse (coordinateListJson);
 	var newList = coordinateList.filter(function(index) {
@@ -24,14 +24,14 @@ function readCoordinates(var from, var to) {
  * Returns a single coordinate, the one next after given timestamp as JSON Object
  * parameter time: long value
  */
-function readNextCoordinate (var time){
+function readNextCoordinate (time){
 	
 }
 
 /**
  * Writes a coordinate to the locale storage
  */
-function writeCoordinate (var latitude, var longitude){
+function writeCoordinate (latitude, longitude){
 	var coordinate = new Object ();
 	var timestamp = new Date().getTime();
 	coordinate.id = timestamp;
