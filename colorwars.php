@@ -30,6 +30,9 @@
 		<script>
 		jQuery(document).ready(function(){
 			jQuery('#player').html(gup('playername'));
+			player = {
+				name: gup('playername')
+			}; 
 			localStorage.clear();
 			initialize();
 			showMe();

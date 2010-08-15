@@ -38,12 +38,12 @@ function initialize() {
         updateMe(coordinate.y,coordinate.x);
         var lastCoordinate = readLatestCoordinate();
         var polyline = new GPolyline([
-          new GLatLng( lastCoordinate.latitude, lastCoordinate.longitude ),
+          new GLatLng( lastCoordinate.lat, lastCoordinate.long ),
           new GLatLng( coordinate.y , coordinate.x )
         ], "#ff0000", 10);
         
         map.addOverlay( polyline );
-        writeCoordinate(coordinate.y, coordinate.x);
+        writeCoordinate(coordinate.y, coordinate.x, 0, 0);
 
       }); 
 	    
@@ -89,6 +89,7 @@ function showMe()
  */
 function updateMe( latitude, longitude )
 {	
+	console.log('update me');
 	point = new GLatLng( latitude, longitude );
 	map.panTo( point, DEFAULT_ZOOM );	
 	
