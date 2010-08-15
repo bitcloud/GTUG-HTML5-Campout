@@ -32,6 +32,20 @@ function initialize() {
 	    map.setCenter(new GLatLng( DEFAULT_LAT, DEFAULT_LNG ), DEFAULT_ZOOM );
 	    //map.addControl(new GSmallMapControl());
 	    geocoder = new GClientGeocoder();
+
+      GEvent.addListener(map, "click", function(overlay,coordinate) {
+        showMe();
+        updateMe(coordinate.y,coordinate.x);
+        var lastCoordinate = readLatestCoordinate();
+        var polyline = new GPolyline([
+          new GLatLng( lastCoordinate.latitude, lastCoordinate.longitude ),
+          new GLatLng( coordinate.y , coordinate.x )
+        ], "#ff0000", 10);
+        
+        map.addOverlay( polyline );
+        writeCoordinate(coordinate.y, coordinate.x);
+
+      }); 
 	    
 		/*
 	    markerIcon = new GIcon();
