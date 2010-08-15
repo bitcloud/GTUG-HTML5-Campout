@@ -21,6 +21,17 @@ function readCoordinates(fromTime, toTime) {
 	return newList;
 }
 
+function readOpponentCoordinates(fromTime, toTime, playerName) {
+	var coordinateListJson = localStorage.getItem("gameDataStorage");
+	var coordinateList = JSON.parse (coordinateListJson);
+	var newList = coordinateList.filter(function(index) {
+		return index.id <= toTime && index.user_name == playerName;
+		// index.id >= fromTime && index.id <= toTime && 
+	});
+	return newList;
+}
+
+
 /**
  * Returns a single coordinate, the one next after given timestamp as JSON Object
  * coordinate.id = timestamp;

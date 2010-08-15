@@ -7,8 +7,8 @@
  * **/
  
 var DEFAULT_ZOOM = 15;
-var DEFAULT_LAT  = 48.1498669;
-var DEFAULT_LNG  = 11.5615340; 
+var DEFAULT_LAT  = 48.1391260;
+var DEFAULT_LNG  = 11.5801860; 
 
 
 // ********************************************************
@@ -33,6 +33,7 @@ function initialize() {
 	    //map.addControl(new GSmallMapControl());
 	    geocoder = new GClientGeocoder();
 
+	    /**
       GEvent.addListener(map, "click", function(overlay,coordinate) {
         showMe();
         updateMe(coordinate.y,coordinate.x);
@@ -45,8 +46,8 @@ function initialize() {
         map.addOverlay( polyline );
         writeCoordinate(coordinate.y, coordinate.x, 0, 0);
 
-      }); 
-	    
+      }); */
+		showMe();
 		/*
 	    markerIcon = new GIcon();
 	    markerIcon.image = markerImage;
@@ -57,11 +58,8 @@ function initialize() {
 		*/
 		
 		// @TODO mockup values
-	    latitude = DEFAULT_LAT;
-	    longitude = DEFAULT_LNG;
 	  
-	    point = new GLatLng( latitude, longitude );    	
-	    map.setCenter( point, DEFAULT_ZOOM );
+
 	}
 }
 
@@ -85,11 +83,11 @@ function showMe()
 /**
  * Updates map and marker by panning and setting the new marker position
  * parameter lat: float latitude for new position
- * parameter lng: float longitude für new position
+ * parameter lng: float longitude fï¿½r new position
  */
 function updateMe( latitude, longitude )
 {	
-	console.log('update me');
+	console.log('lat '+latitude);
 	point = new GLatLng( latitude, longitude );
 	map.panTo( point, DEFAULT_ZOOM );	
 	

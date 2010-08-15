@@ -52,6 +52,8 @@
   <script src="js/gmap.js"></script>
 <script>
 game = { id: 1 };
+opponent = [{name: 'Markus', color: 'green' } ];
+
 function gup( name )
 {
   name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");

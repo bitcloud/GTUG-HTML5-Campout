@@ -7,10 +7,7 @@ var interval;
 
 //periodically stores current location, to be called on document.ready
 function periodicallyUpdateLocation(){
-	console.log('periodical update');
-	
 	var interval = 1000 * 5; //one minute
-	localStorage.clear();
 	syncStorage();
 	timerid = setInterval(intervalCaller,interval);
 }
@@ -22,15 +19,14 @@ function periodicallyUpdateLocation(){
 function intervalCaller()
 {	
 	storeCurrentLocation();
-	readAndDrawLocations();
+	//readAndDrawLocations();
+	readAndDrawOpponentLocations();
 }
 
 // determine current position, and write it to local storage
 function storeCurrentLocation(){
-	console.log('store current location');
 	var thresholdInMeters = 5;
 	navigator.geolocation.getCurrentPosition(function(position) {
-		console.log('get current postition');
 	   var distance = distanceFromLastLocation(position.coords.latitude,position.coords.longitude);
 	   updateMe(position.coords.latitude,position.coords.longitude);
 	   if (distance > thresholdInMeters ) {
@@ -53,8 +49,8 @@ function storeCurrentLocation(){
 function readAndDrawLocations()
 {
 	var now = new Date();
-
-  var coords = readCoordinates( now - interval , now);
+	var coords = readCoordinates( now - interval , now);
+	
 	/*	
 	 * coordinate.id = timestamp;
 	 *	coordinate.lat 
@@ -73,12 +69,34 @@ function readAndDrawLocations()
 	}	
 }
 
+function readAndDrawOpponentLocations()
+{
+	var now = new Date();
+	var opponentCoords = readOpponentCoordinates( now - interval , now, opponent[0].name);
+	
+	/*	
+	 * coordinate.id = timestamp;
+	 *	coordinate.lat 
+	 *	coordinate.lon 
+	 *	coordinate.heading 
+	 *	coordinate.speed	
+	*/
+	for ( var i = 1; i< opponentCoords.length; i++)
+	{
+		var polyline = new GPolyline([
+			new GLatLng( opponentCoords[i-1].lat, opponentCoords[i-1].long ),
+			new GLatLng( opponentCoords[i].lat, opponentCoords[i].long )
+		], "#00FF00", 10);
+		
+		map.addOverlay( polyline );		
+	}	
+}
+
+
 //gets diff in meters between current location, passe as param, and last known location in localstorage
 function distanceFromLastLocation(curLatitude, curLongitude) {
-	console.log('distance from last location');
 	var lastCoord = readLatestCoordinate();
 	var distanceFromLast = calculateDistance(lastCoord.lat, lastCoord.long, curLatitude, curLongitude);
-	console.log('distancefromlast'+distanceFromLast);
 	return distanceFromLast;
 }
 
@@ -97,6 +115,5 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
           Math.sin(dLon / 2) * Math.sin(dLon / 2); 
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
   var d = R * c;
-  console.log('reached the end '+(d*1000));
   return d*1000; //modified to return m rathern than km
 }
