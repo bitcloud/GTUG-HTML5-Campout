@@ -91,7 +91,9 @@ function updateMe( latitude, longitude )
 {	
 	console.log('update me');
 	point = new GLatLng( latitude, longitude );
-	map.panTo( point, DEFAULT_ZOOM );	
+	
+	if ( 'on' == document.getElementById( 'locateSwitch' ).value )	
+		map.panTo( point, DEFAULT_ZOOM );	
 	
 	map.removeOverlay( marker );
     marker = new GMarker( point );
