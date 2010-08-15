@@ -102,20 +102,6 @@ function updateMe( latitude, longitude )
 /**
  * Demo for drawing a line in the gmap
  */
-function demoLine()
-{
-	var polyline = new GPolyline([
-		new GLatLng( DEFAULT_LAT, DEFAULT_LNG ),
-		new GLatLng( DEFAULT_LAT+0.01, DEFAULT_LNG+0.005 )
-	], "#ff0000", 10);
-	
-	map.addOverlay( polyline );
-}
-
-
-/**
- * Demo for drawing a line in the gmap
- */
 function demoPolygon()
 {
 	var latOffset = 0.01;
