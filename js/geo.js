@@ -26,7 +26,9 @@ function storeCurrentLocation(){
 	   var distance = distanceFromLastLocation(position.coords.latitude,position.coords.longitude);
 	   updateMe(position.coords.latitude,position.coords.longitude);
 	   if (distance > thresholdInMeters ) {
-	   	   writeCoordinate(position.coords.latitude,position.coords.longitude);	
+	   
+			// @TODO: add heading and speed - this is also saved!
+	   	   writeCoordinate(position.coords.latitude,position.coords.longitude,position.coords.heading,position.coords.spead);	
 	   }
 	}, 
   function(error) {
@@ -42,7 +44,24 @@ function storeCurrentLocation(){
  */
 function readAllLocations()
 {
-	// @TODO get them on
+	var fromTime = new Date();
+	var coords = readCoordinates( fromTime, fromTime - 1000 * 60 * 60 ) // coords from one hour
+	/*	
+	 * coordinate.id = timestamp;
+	 *	coordinate.lat 
+	 *	coordinate.lon 
+	 *	coordinate.heading 
+	 *	coordinate.speed	
+	*/
+	for ( var i = 1; i<= coords.length; i++)
+	{
+		var polyline = new GPolyline([
+			new GLatLng( coords[i-1].lat, coords[i-1].lon ),
+			new GLatLng( coords[i].lat, coords[i].lon )
+		], "#ff0000", 10);
+		
+		map.addOverlay( polyline );		
+	}	
 }
 
 //gets diff in meters between current location, passe as param, and last known location in localstorage
