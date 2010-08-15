@@ -3,10 +3,12 @@
  */
 
 var timerid;
+var interval;
 //periodically stores current location, to be called on document.ready
 function periodicallyUpdateLocation(){
 	console.log('periodical update');
 	var interval = 1000 * 5; //one minute
+	localStorage.clear();
 	timerid = setInterval(storeCurrentLocation,interval);
 }
 
@@ -17,7 +19,7 @@ function periodicallyUpdateLocation(){
 function intervalCaller()
 {	
 	storeCurrentLocation();
-	readAllLocations();
+	readAndDrawLocations();
 }
 
 // determine current position, and write it to local storage
@@ -29,7 +31,10 @@ function storeCurrentLocation(){
 	   var distance = distanceFromLastLocation(position.coords.latitude,position.coords.longitude);
 	   updateMe(position.coords.latitude,position.coords.longitude);
 	   if (distance > thresholdInMeters ) {
-	   	   writeCoordinate(position.coords.latitude,position.coords.longitude, position.coords.heading, position.coords.speed);	
+	   
+			// @TODO: add heading and speed - this is also saved!
+	   	   writeCoordinate(position.coords.latitude,position.coords.longitude,position.coords.heading,position.coords.spead);	
+
 	   }
 	}, 
   function(error) {
@@ -43,9 +48,27 @@ function storeCurrentLocation(){
  * on global accessible map (prepared from gmap.js)
  *
  */
-function readAllLocations()
+function readAndDrawLocations()
 {
-	// @TODO get them on
+	var now = new Date();
+
+  var coords = readCoordinates( now - interval , now);
+	/*	
+	 * coordinate.id = timestamp;
+	 *	coordinate.lat 
+	 *	coordinate.lon 
+	 *	coordinate.heading 
+	 *	coordinate.speed	
+	*/
+	for ( var i = 1; i<= coords.length; i++)
+	{
+		var polyline = new GPolyline([
+			new GLatLng( coords[i-1].lat, coords[i-1].lon ),
+			new GLatLng( coords[i].lat, coords[i].lon )
+		], "#ff0000", 10);
+		
+		map.addOverlay( polyline );		
+	}	
 }
 
 //gets diff in meters between current location, passe as param, and last known location in localstorage
