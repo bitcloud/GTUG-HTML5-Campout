@@ -5,7 +5,17 @@
 //periodically stores current location, to be called on document.ready
 function periodicallyUpdateLocation(){
 	var interval = 1000 * 20; //one minute
-	setInterval(storeCurrentLocation,interval);
+	setInterval(intervalCaller,interval);
+}
+
+/**
+ * Collect all periodically methods to call
+ *
+ */
+function intervalCaller()
+{	
+	storeCurrentLocation();
+	readAllLocations();
 }
 
 
@@ -23,6 +33,16 @@ function storeCurrentLocation(){
 	    alert('could not get position');
 	});
 	
+}
+
+/**
+ * Read data from local storage via storage.js and draw polylines 
+ * on global accessible map (prepared from gmap.js)
+ *
+ */
+function readAllLocations()
+{
+	// @TODO get them on
 }
 
 //gets diff in meters between current location, passe as param, and last known location in localstorage
