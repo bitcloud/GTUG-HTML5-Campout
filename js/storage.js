@@ -34,7 +34,7 @@ function readCoordinates(fromTime, toTime) {
 function readLatestCoordinate(){
 	var coordinateListJson = localStorage.getItem("coordinateStorage");
 	var coordinateList = JSON.parse (coordinateListJson);	
-	if(coordinateList == null) return { lat: 0, lon: 0};
+	if(coordinateList == null) return { lat: 0, long: 0};
 	return coordinateList[coordinateList.length - 1];
 }
 
@@ -42,6 +42,8 @@ function readLatestCoordinate(){
  * Writes a coordinate to the locale storage
  */
 function writeCoordinate (latitude, longitude, heading, speed){
+	
+	console.log('write');
 	
 	if (heading == null){
 		heading = 0;
@@ -55,6 +57,7 @@ function writeCoordinate (latitude, longitude, heading, speed){
 	var timestamp = new Date().getTime();
 	
 	coordinate.id = timestamp;
+	coordinate.user_name = player.name;
 	coordinate.lat = latitude;
 	coordinate.long = longitude;
 	coordinate.heading = heading;
@@ -69,5 +72,7 @@ function writeCoordinate (latitude, longitude, heading, speed){
 	var coordinateJson = JSON.stringify(coordinateList);
 	localStorage.setItem("coordinateStorage", coordinateJson);
 	
-	jQuery.post('./set.php',  { data: coordinateJson} );
+	jQuery.post('./set.php',  { data: coordinateJson} , function(data) {
+		console.log(data);
+	});
 }
