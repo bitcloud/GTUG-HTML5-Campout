@@ -3,11 +3,12 @@
  */
 
 var timerid;
+var interval;
 //periodically stores current location, to be called on document.ready
 function periodicallyUpdateLocation(){
 	console.log('periodical update');
 	localStorage.clear();
-	var interval = 1000 * 5; //one minute
+	interval = 1000 * 5; //one minute
 	timerid = setInterval(storeCurrentLocation,interval);
 }
 
@@ -18,7 +19,7 @@ function periodicallyUpdateLocation(){
 function intervalCaller()
 {	
 	storeCurrentLocation();
-	readAllLocations();
+	readAndDrawLocations();
 }
 
 // determine current position, and write it to local storage
@@ -47,10 +48,11 @@ function storeCurrentLocation(){
  * on global accessible map (prepared from gmap.js)
  *
  */
-function readAllLocations()
+function readAndDrawLocations()
 {
-	var fromTime = new Date();
-	var coords = readCoordinates( fromTime, fromTime - 1000 * 60 * 60 ) // coords from one hour
+	var now = new Date();
+
+  var coords = readCoordinates( now - interval , now);
 	/*	
 	 * coordinate.id = timestamp;
 	 *	coordinate.lat 
