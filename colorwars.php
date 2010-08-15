@@ -26,6 +26,8 @@
 				<img src="iwebkit/avatar-nils.jpg" />
 				<div id="player"><?=$_GET['playername']?></div>
 				<span>750 qm</span>
+				<form><input id="locateSwitch" name="locateSwitch" type="checkbox" /></form>
+				
 			</div>
 		</div>
 		
