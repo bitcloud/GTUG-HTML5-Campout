@@ -40,8 +40,9 @@ function readLatestCoordinate(){
 
 function syncStorage() {
 	jQuery.get('./get.php', { game_id: game.id }, function(data) {
-		console.log(JSON.parse(data));
-		localStorage.setItem("gameDataStorage", data.data);
+		console.log('syncing Store');
+		var response = JSON.parse(data);
+		localStorage.setItem("gameDataStorage", response.data);
 	});
 }
 
