@@ -50,9 +50,9 @@ function readLatestCoordinate(){
 }
 
 function syncStorage() {
-	jQuery.get('./get.php', { game_id: game.id }, function(data) {
-		console.log('syncing Store');
+	jQuery.get('./get.php', { game_id: game.id, user_name: player.name }, function(data) {
 		var response = JSON.parse(data);
+		if(response.gamestatus=="1") alert('YOU LOST');
 		localStorage.setItem("gameDataStorage", response.data);
 	});
 }

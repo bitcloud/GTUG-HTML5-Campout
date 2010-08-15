@@ -18,8 +18,9 @@ function periodicallyUpdateLocation(){
  */
 function intervalCaller()
 {	
+	syncStorage();
 	storeCurrentLocation();
-	//readAndDrawLocations();
+	readAndDrawLocations();
 	readAndDrawOpponentLocations();
 }
 

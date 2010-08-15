@@ -39,6 +39,7 @@
 		</div>
 		
 		<script>
+		player = { name: null };
 		jQuery(document).ready(function(){
 			jQuery('#player').html(gup('playername'));
 			player = {

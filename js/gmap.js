@@ -33,7 +33,7 @@ function initialize() {
 	    //map.addControl(new GSmallMapControl());
 	    geocoder = new GClientGeocoder();
 
-	    /**
+	   
       GEvent.addListener(map, "click", function(overlay,coordinate) {
         showMe();
         updateMe(coordinate.y,coordinate.x);
@@ -46,7 +46,7 @@ function initialize() {
         map.addOverlay( polyline );
         writeCoordinate(coordinate.y, coordinate.x, 0, 0);
 
-      }); */
+      }); 
 		showMe();
 		/*
 	    markerIcon = new GIcon();
@@ -87,7 +87,6 @@ function showMe()
  */
 function updateMe( latitude, longitude )
 {	
-	console.log('lat '+latitude);
 	point = new GLatLng( latitude, longitude );
 	map.panTo( point, DEFAULT_ZOOM );	
 	
