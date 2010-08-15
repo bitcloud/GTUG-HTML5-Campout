@@ -12,7 +12,7 @@ function periodicallyUpdateLocation(){
 	var interval = 1000 * 5; //one minute
 	localStorage.clear();
 	syncStorage();
-	timerid = setInterval(storeCurrentLocation,interval);
+	timerid = setInterval(intervalCaller,interval);
 }
 
 /**
