@@ -33,7 +33,7 @@ function initialize() {
 	    //map.addControl(new GSmallMapControl());
 	    geocoder = new GClientGeocoder();
 
-      GEvent.addListener(map, "click", function(overlay,coordinate) {
+      GEvent.addListener(marker, "click", function(overlay,coordinate) {
         showMe();
         updateMe(coordinate.y,coordinate.x);
         var lastCoordinate = readLatestCoordinate();
@@ -43,7 +43,7 @@ function initialize() {
         ], "#ff0000", 10);
         
         map.addOverlay( polyline );
-        writeCoordinate(coordinate.y, coordinate.x);
+        writeCoordinate(coordinate.y, coordinate.x, 0, 0);
 
       }); 
 	    
