@@ -13,7 +13,7 @@
 			<div class="playerBg bgMe"></div>
 			<div class="playerFg">
 				<img src="iwebkit/avatar-nils.jpg" />
-				<div id="player">Niels</div>
+				<div id="player"><?=$_GET['playername']?></div>
 				<span>750 qm</span>
 			</div>
 		</div>
@@ -30,6 +30,7 @@
 		<script>
 		jQuery(document).ready(function(){
 			jQuery('#player').html(gup('playername'));
+			localStorage.clear();
 			initialize();
 			showMe();
 			periodicallyUpdateLocation();
