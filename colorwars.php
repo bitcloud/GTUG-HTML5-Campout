@@ -23,11 +23,11 @@
 		<div id="playerMe" class="player">
 			<div class="playerBg bgMe"></div>
 			<div class="playerFg">
-				<img src="iwebkit/avatar-nils.jpg" />
-				<div id="player"><?=$_GET['playername']?></div>
-				<span>750 qm</span>
-				<form><input id="locateSwitch" name="locateSwitch" type="checkbox" /></form>
-				
+				<!-- img src="iwebkit/avatar-nils.jpg" / -->
+				<div id="player">Niels</div>
+				<span>750 qm</span><br />
+				<span>Pan map:</span>
+				<form><input id="locateSwitch" name="locateSwitch" type="checkbox" checked /></form>				
 			</div>
 		</div>
 		
