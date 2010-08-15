@@ -27,6 +27,12 @@
 		.bg { position: absolute; left: 0; top: 0; width: 100%; height: 64px; background-color: black; filter: alpha(opacity=50);-moz-opacity: 0.5; opacity: 0.5; border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px; }
 		.fg { position: absolute; left: 16px; top: 16px;  }
 		
+		#debug { position: absolute; left:0; top: 32px; }
+		.debug { width: 100%; height: 32px; }
+		#debug table { width: 100% }
+		#debug td { width: 33% }
+		
+		
 		#playerMe { position: absolute; left: 0; bottom: 0; }
 		#playerEnemy { position: absolute; right: 0; bottom: 0;}
 		.player { width: 96px; height: 128px; }
@@ -45,6 +51,7 @@
   <script src="js/geo.js"></script>
   <script src="js/gmap.js"></script>
 <script>
+game = { id: 1 };
 function gup( name )
 {
   name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");

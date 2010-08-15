@@ -8,6 +8,17 @@
 		</div> 	
 		
 		<div id="gmap"></div>
+		<div id="debug" class="debug">
+			<div class="playerBg bgMe">
+			<table>
+			<tr>
+			<td>CallBack Response: <div id="message"></div></td>
+			<td>currentLat <div id="currentLat"></div></td>
+			<td>currentLong <div id="currentLong"></div></td>
+			</tr>
+			</table>
+			</div>
+		</div>
 		
 		<div id="playerMe" class="player">
 			<div class="playerBg bgMe"></div>

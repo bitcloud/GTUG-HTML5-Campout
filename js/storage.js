@@ -38,6 +38,13 @@ function readLatestCoordinate(){
 	return coordinateList[coordinateList.length - 1];
 }
 
+function syncStorage() {
+	jQuery.get('./get.php', { game_id: game.id }, function(data) {
+		console.log(JSON.parse(data));
+		localStorage.setItem("gameDataStorage", data.data);
+	});
+}
+
 /**
  * Writes a coordinate to the locale storage
  */
@@ -45,23 +52,28 @@ function writeCoordinate (latitude, longitude, heading, speed){
 	
 	console.log('write');
 	
-	if (heading == null){
+	if (heading == null || heading == undefined){
 		heading = 0;
 	}
 	
-	if (speed == null){
+	if (speed == null || speed == undefined){
 		speed = 0;
 	}
-	
+	speed = 0;
+	heading = 0;
 	var coordinate = new Object ();
 	var timestamp = new Date().getTime();
 	
 	coordinate.id = timestamp;
 	coordinate.user_name = player.name;
+	coordinate.game_id = game.id;
 	coordinate.lat = latitude;
 	coordinate.long = longitude;
 	coordinate.heading = heading;
 	coordinate.speed = speed;
+	
+	jQuery('#currentLat').html(coordinate.lat);
+	jQuery('#currentLong').html(coordinate.long);
 	
 	var coordinateListJson = localStorage.getItem("coordinateStorage"); 
 	var coordinateList = [];
@@ -73,6 +85,7 @@ function writeCoordinate (latitude, longitude, heading, speed){
 	localStorage.setItem("coordinateStorage", coordinateJson);
 	
 	jQuery.post('./set.php',  { data: coordinateJson} , function(data) {
-		console.log(data);
+		var response = JSON.parse(data);
+		jQuery('#message').html(response.message);
 	});
 }

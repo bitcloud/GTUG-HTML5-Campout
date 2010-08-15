@@ -6,7 +6,6 @@ var timerid;
 //periodically stores current location, to be called on document.ready
 function periodicallyUpdateLocation(){
 	console.log('periodical update');
-	localStorage.clear();
 	var interval = 1000 * 5; //one minute
 	timerid = setInterval(storeCurrentLocation,interval);
 }
